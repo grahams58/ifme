@@ -124,25 +124,25 @@ describe StrategiesController do
 
         context 'when the comment belongs to the current_user' do
           it 'destroys the comment' do
-            expect { get :delete_comment, params: { commentid: comment.id } }
+            expect { get :delete_comment, params: { comment_id: comment.id } }
               .to change(Comment, :count).by(-1)
           end
 
           it 'renders nothing' do
-            get :delete_comment, params: { commentid: comment.id }
+            get :delete_comment, params: { comment_id: comment.id }
             expect(response.body).to eq('')
           end
         end
 
         context 'when the strategy belongs to the current_user' do
           it 'destroys the comment' do
-            expect { get :delete_comment, params: { commentid: comment.id } }
+            expect { get :delete_comment, params: { comment_id: comment.id } }
               .to change(Comment, :count).by(-1)
           end
 
           it 'renders nothing' do
             comment
-            get :delete_comment, params: { commentid: 1 }
+            get :delete_comment, params: { comment_id: 1 }
 
             expect(response.body).to eq('')
           end
@@ -151,7 +151,7 @@ describe StrategiesController do
 
       context 'when the comment does not exist' do
         it 'renders nothing' do
-          get :delete_comment, params: { commentid: 1 }
+          get :delete_comment, params: { comment_id: 1 }
           expect(response.body).to eq('')
         end
       end
